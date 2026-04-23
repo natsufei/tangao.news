@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>開放代理合作書目 | 書籍展示</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Header ── */
+    header {
+      background: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    header h1 {
+      font-size: 36px;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+    header p {
+      color: #666;
+      font-size: 18px;
+    }
+
+    /* ── Main Content ── */
+    main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    /* ── Book Card ── */
+    .book-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .book-img-container {
+      width: 100%;
+      height: 350px;
+      background: #eee;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .book-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px;
+    }
+
+    .book-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .book-number {
+      font-size: 14px;
+      color: #e8820a;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .book-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .book-description {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .book-footer {
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-more {
+      background: #e8820a;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .btn-more:hover {
+      background: #c96e08;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+    footer p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      header h1 { font-size: 28px; }
+      .book-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>開放代理合作書目</h1>
+    <p>精選優質英語教材，誠摯邀請合作夥伴</p>
+  </header>
+
+  <main>
+    <div class="book-grid">
+      <!-- 1. Phonics go -->
+      <div class="book-card">
+        <div class="book-img-container">
+          <img src="https://www.tangao.com.tw/images/product/20210511153818.jpg" alt="Phonics go" onerror="this.src='https://placehold.co/300x400?text=Phonics+go'">
+        </div>
+        <div class="book-content">
+          <div class="book-number">01</div>
+          <h2 class="book-title">Phonics go</h2>
+          <p class="book-description">專為兒童設計的自然發音教材，透過生動的圖片與節奏感強的練習，讓孩子輕鬆掌握發音規則。</p>
+          <div class="book-footer">
+            <a href="#" class="btn-more">了解詳情</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. New I fun -->
+      <div class="book-card">
+        <div class="book-img-container">
+          <img src="https://www.tangao.com.tw/images/product/20210511153920.jpg" alt="New I fun" onerror="this.src='https://placehold.co/300x400?text=New+I+fun'">
+        </div>
+        <div class="book-content">
+          <div class="book-number">02</div>
+          <h2 class="book-title">New I fun</h2>
+          <p class="book-description">結合數位資源的幼兒美語教材，內容涵蓋字母、發音與基本對話，適合幼兒園所使用。</p>
+          <div class="book-footer">
+            <a href="#" class="btn-more">了解詳情</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Phonics fun -->
+      <div class="book-card">
+        <div class="book-img-container">
+          <img src="https://www.tangao.com.tw/images/product/20210511154010.jpg" alt="Phonics fun" onerror="this.src='https://placehold.co/300x400?text=Phonics+fun'">
+        </div>
+        <div class="book-content">
+          <div class="book-number">03</div>
+          <h2 class="book-title">Phonics fun</h2>
+          <p class="book-description">趣味性極高的自然發音系列，強調在遊戲與歌謠中學習，奠定紮實基礎。</p>
+          <div class="book-footer">
+            <a href="#" class="btn-more">了解詳情</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Grammar -->
+      <div class="book-card">
+        <div class="book-img-container">
+          <img src="https://www.tangao.com.tw/images/product/20210511154100.jpg" alt="Grammar" onerror="this.src='https://placehold.co/300x400?text=Grammar'">
+        </div>
+        <div class="book-content">
+          <div class="book-number">04</div>
+          <h2 class="book-title">Grammar</h2>
+          <p class="book-description">系統化的文法教材，將複雜的語法規則簡化為易懂的圖解與練習，建立紮實架構。</p>
+          <div class="book-footer">
+            <a href="#" class="btn-more">了解詳情</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Let’s speak -->
+      <div class="book-card">
+        <div class="book-img-container">
+          <img src="https://www.tangao.com.tw/images/product/20210511154200.jpg" alt="Let’s speak" onerror="this.src='https://placehold.co/300x400?text=Let%27s+speak'">
+        </div>
+        <div class="book-content">
+          <div class="book-number">05</div>
+          <h2 class="book-title">Let’s speak</h2>
+          <p class="book-description">三冊式英語口說教材，透過結構化對話與趣味活動，有效提升聽說能力。</p>
+          <div class="book-footer">
+            <a href="#" class="btn-more">了解詳情</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Fun reader -->
+      <div class="book-card">
+        <div class="book-img-container">
+          <img src="https://www.tangao.com.tw/images/product/20210511154300.jpg" alt="Fun reader" onerror="this.src='https://placehold.co/300x400?text=Fun+reader'">
+        </div>
+        <div class="book-content">
+          <div class="book-number">06</div>
+          <h2 class="book-title">Fun reader</h2>
+          <p class="book-description">精選多樣化主題的讀本系列，培養孩子的閱讀興趣與理解力。</p>
+          <div class="book-footer">
+            <a href="#" class="btn-more">了解詳情</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Super Starter -->
+      <div class="book-card">
+        <div class="book-img-container">
+          <img src="https://www.tangao.com.tw/images/product/20210511154400.jpg" alt="Super Starter" onerror="this.src='https://placehold.co/300x400?text=Super+Starter'">
+        </div>
+        <div class="book-content">
+          <div class="book-number">07</div>
+          <h2 class="book-title">Super Starter</h2>
+          <p class="book-description">專為初學者設計的啟蒙教材，內容簡單明瞭，讓孩子第一步就愛上英文。</p>
+          <div class="book-footer">
+            <a href="#" class="btn-more">了解詳情</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. My first reading 101 -->
+      <div class="book-card">
+        <div class="book-img-container">
+          <img src="https://www.tangao.com.tw/images/product/20210511154500.jpg" alt="My first reading 101" onerror="this.src='https://placehold.co/300x400?text=My+first+reading+101'">
+        </div>
+        <div class="book-content">
+          <div class="book-number">08</div>
+          <h2 class="book-title">My first reading 101</h2>
+          <p class="book-description">基礎閱讀系列，從單字到短句循序漸進，是孩子開始獨立閱讀的最佳選擇。</p>
+          <div class="book-footer">
+            <a href="#" class="btn-more">了解詳情</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Listen up -->
+      <div class="book-card">
+        <div class="book-img-container">
+          <img src="https://www.tangao.com.tw/images/product/20210511154600.jpg" alt="Listen up" onerror="this.src='https://placehold.co/300x400?text=Listen+up'">
+        </div>
+        <div class="book-content">
+          <div class="book-number">09</div>
+          <h2 class="book-title">Listen up</h2>
+          <p class="book-description">專注於聽力訓練的教材，包含多種生活化場景，全面提升聽力敏銳度。</p>
+          <div class="book-footer">
+            <a href="#" class="btn-more">了解詳情</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Power reading -->
+      <div class="book-card">
+        <div class="book-img-container">
+          <img src="https://www.tangao.com.tw/images/product/20210511154700.jpg" alt="Power reading" onerror="this.src='https://placehold.co/300x400?text=Power+reading'">
+        </div>
+        <div class="book-content">
+          <div class="book-number">10</div>
+          <h2 class="book-title">Power reading</h2>
+          <p class="book-description">進階閱讀教材，旨在提升學生的閱讀速度與深度理解力。</p>
+          <div class="book-footer">
+            <a href="#" class="btn-more">了解詳情</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Reading box (小套組) -->
+      <div class="book-card">
+        <div class="book-img-container">
+          <img src="https://www.tangao.com.tw/images/product/20210511154800.jpg" alt="Reading box (小套組)" onerror="this.src='https://placehold.co/300x400?text=Reading+box'">
+        </div>
+        <div class="book-content">
+          <div class="book-number">11</div>
+          <h2 class="book-title">Reading box (小套組)</h2>
+          <p class="book-description">經典的讀本小套組，收錄多本精彩故事，是家庭共讀或教室補充教材的理想之選。</p>
+          <div class="book-footer">
+            <a href="#" class="btn-more">了解詳情</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 堂奧圖書 - 開放代理合作書目展示</p>
+  </footer>
+
+</body>
+</html>
