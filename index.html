@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>开放代理合作书目 | 书籍展示</title>
+  <title>书籍详细介绍 | 开放代理合作书目</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     /* ── Reset & Base ── */
@@ -11,119 +11,124 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-      background: #f9f9f9;
+      background: #fdfdfd;
       color: #333;
-      line-height: 1.6;
+      line-height: 1.8;
     }
     a { text-decoration: none; color: inherit; }
 
     /* ── Header ── */
     header {
-      background: #ffd078;
-      padding: 40px 20px;
+      background: #fff;
+      padding: 30px 20px;
       text-align: center;
       border-bottom: 1px solid #eee;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
-    header h1 {
-      font-size: 36px;
-      color: #1a1a1a;
-      margin-bottom: 10px;
-      letter-spacing: 2px;
-    }
-    header p {
-      color: #666;
-      font-size: 18px;
+    header h1 { font-size: 28px; color: #1a1a1a; }
+    .back-btn {
+      display: inline-block;
+      margin-top: 10px;
+      color: #e8820a;
+      font-weight: 500;
+      cursor: pointer;
     }
 
     /* ── Main Content ── */
     main {
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 40px auto;
       padding: 0 20px;
     }
 
-    .book-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    /* ── Book Card ── */
-    .book-card {
+    .detail-section {
       background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 15px;
+      padding: 40px;
+      margin-bottom: 60px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
       display: flex;
-      flex-direction: column;
-    }
-    .book-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      flex-direction: column; /* 設為垂直排列，讓圖片在上方橫排 */
+      gap: 30px;
+      border: 1px solid #f0f0f0;
     }
 
-    .book-img-container {
-      width: 100%;
-      height: 350px;
-      background: #eee;
-      overflow: hidden;
+    /* 圖片橫向併排容器 */
+    .book-visual-container {
       display: flex;
-      align-items: center;
       justify-content: center;
-    }
-    .book-img-container img {
+      gap: 20px;
+      flex-wrap: wrap; /* 圖片多時自動換行 */
       width: 100%;
-      height: 100%;
-      object-fit: contain;
-      padding: 10px;
     }
 
-    .book-content { 
-      padding: 20px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
+    .book-visual {
+      flex: 0 1 250px; /* 限制單張圖片最大寬度 */
+      background: #f9f9f9;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
-    .book-number {
-      font-size: 14px;
+    .book-visual:hover {
+      transform: scale(1.03);
+    }
+    .book-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+      padding: 10px;
+      object-fit: contain;
+    }
+
+    .book-info { 
+      width: 100%; 
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    .book-tag {
+      display: inline-block;
+      background: #fff5e6;
       color: #e8820a;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
       font-weight: 700;
-      margin-bottom: 5px;
+      margin-bottom: 15px;
     }
     .book-title {
-      font-size: 20px;
+      font-size: 32px;
       font-weight: 700;
       color: #1a1a1a;
-      margin-bottom: 12px;
-      line-height: 1.3;
-    }
-    .book-description {
-      font-size: 15px;
-      color: #555;
       margin-bottom: 20px;
-      flex-grow: 1;
+      border-left: 5px solid #e8820a;
+      padding-left: 15px;
     }
-
-    .book-footer {
-      border-top: 1px solid #eee;
-      padding-top: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .book-full-desc {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 25px;
     }
-    .btn-more {
-      background: #e8820a;
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      transition: background 0.2s;
+    .book-features {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 特色也改為橫向併排佈局 */
+      gap: 15px;
     }
-    .btn-more:hover {
-      background: #c96e08;
+    .book-features li {
+      position: relative;
+      padding-left: 25px;
+      font-size: 15px;
+    }
+    .book-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #e8820a;
+      font-weight: bold;
     }
 
     /* ── Footer ── */
@@ -132,201 +137,290 @@
       color: #fff;
       text-align: center;
       padding: 40px 20px;
-      margin-top: 60px;
-    }
-    footer p {
-      font-size: 14px;
-      opacity: 0.8;
     }
 
     /* ── Responsive ── */
-    @media (max-width: 600px) {
-      header h1 { font-size: 28px; }
-      .book-grid { grid-template-columns: 1fr; }
+    @media (max-width: 768px) {
+      .detail-section { padding: 25px; }
+      .book-title { font-size: 24px; }
+      .book-visual { flex: 0 1 100%; max-width: 300px; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>开放代理合作书目</h1>
-    <p>精选优质英语教材，诚挚邀请合作伙伴</p>
-    <h2> 联络方式 </h2>
-    <p> book@tangao.com.tw </p>
+    <h1>书籍详细介绍</h1>
+    <a href="index.html" class="back-btn">← 返回书目首页</a>
   </header>
 
   <main>
-    <div class="book-grid">
-      <!-- 1. Phonics go -->
-      <div class="book-card">
-        <div class="book-img-container">
-          <img src="Phonics GO 1 陸版正方.jpg" alt="Phonics go" onerror="this.src='https://placehold.co/600x600?text=Phonics+go+系列'">
-        </div>
-        <div class="book-content">
-          <div class="book-number">01</div>
-          <h2 class="book-title">Phonics go</h2>
-          <p class="book-description">专为儿童设计的自然发音教材，透过生动的图片与节奏感强的练习，让孩子轻松掌握发音规则。</p>
-          <div class="book-footer">
-            <a href="details.html#book1" class="btn-more">了解详情</a>
+    <!-- 1. Phonics go -->
+    <section class="detail-section" id="book1">
+      <div class="book-visual-container">
+        <div class="book-visual">
+          <img src="Phonics GO 1 陆版.jpg" alt="Phonics go 1" onerror="this.src='https://placehold.co/300x400?text=Phonics+GO+1'">
           </div>
+        <div class="book-visual">
+          <img src="Phonics GO 2 陆版.jpg" alt="Phonics go 2" onerror="this.src='https://placehold.co/300x400?text=Phonics+GO+2'">
         </div>
       </div>
+      <div class="book-info">
+        <span class="book-tag">自然发音</span>
+        <h2 class="book-title">Phonics go</h2>
+        <p class="book-full-desc">这是一套专为初学者设计的自然发音教材，透过精心编排的课程，让孩子在轻松愉快的氛围中掌握英语发音规律。</p>
+        <ul class="book-features">
+          <li>图像化记忆法，加深学习印象。</li>
+          <li>节奏感强的念谣，训练语感。</li>
+          <li>丰富的练习题，即学即测。</li>
+        </ul>
+      </div>
+    </section>
 
-      <!-- 2. New I fun -->
-      <div class="book-card">
-        <div class="book-img-container">
-          <img src="New I fun 正方.jpg" alt="New I fun" onerror="this.src='https://placehold.co/600x600?text=New+I+fun'">
+    <!-- 2. New I fun -->
+    <section class="detail-section" id="book2">
+      <div class="book-visual-container">
+        <div class="book-visual">
+          <img src="NEW I FUN (1).jpg" alt="New I fun" onerror="this.src='https://placehold.co/300x400?text=New+I+fun'">
         </div>
-        <div class="book-content">
-          <div class="book-number">02</div>
-          <h2 class="book-title">New I fun</h2>
-          <p class="book-description">结合数位资源的幼儿美语教材，内容涵盖字母、发音与基本对话，适合幼儿园所使用。</p>
-          <div class="book-footer">
-            <a href="details.html#book2" class="btn-more">了解详情</a>
-          </div>
+        <div class="book-visual">
+          <img src="NEW I FUN (2)" alt="New I fun" onerror="this.src='https://placehold.co/300x400?text=New+I+fun'">
+           </div>
+        <div class="book-visual">
+          <img src="NEW I FUN (3)" alt="New I fun" onerror="this.src='https://placehold.co/300x400?text=New+I+fun'">
+           </div>
+        <div class="book-visual">
+          <img src="NEW I FUN (3)" alt="New I fun" onerror="this.src='https://placehold.co/300x400?text=New+I+fun'">
+           </div>
+        <div class="book-visual">
+          <img src="NEW I FUN (4)" alt="New I fun" onerror="this.src='https://placehold.co/300x400?text=New+I+fun'">
+           </div>
+        <div class="book-visual">
+          <img src="NEW I FUN (5)" alt="New I fun" onerror="this.src='https://placehold.co/300x400?text=New+I+fun'">
+      </div>
+      <div class="book-info">
+        <span class="book-tag">幼儿美语</span>
+        <h2 class="book-title">New I fun</h2>
+        <p class="book-full-desc">针对幼儿发展特性设计，结合生动有趣的数位资源，让英语学习变得像游戏一样好玩。</p>
+        <ul class="book-features">
+          <li>多媒体教学资源，吸引孩子注意力。</li>
+          <li>生活化情境对话，学了就能说。</li>
+          <li>互动式练习，提升学习动机。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. Phonics fun -->
+    <section class="detail-section" id="book3"> 
+      <div class="book-visual-container">
+        <div class="book-visual">
+          <img src="Phonics FUN 1.jpg" alt="Phonics Fun 1" onerror="this.src='https://placehold.co/300x400?text=Phonics+fun+1'">
+        </div>
+        <div class="book-visual">
+          <img src="Phonics FUN 2.jpg" alt="Phonics Fun 2" onerror="this.src='https://placehold.co/300x400?text=Phonics+fun+2'">
+      </div>
+      <div class="book-visual">
+          <img src="Phonics FUN 3.jpg" alt="Phonics Fun 2" onerror="this.src='https://placehold.co/300x400?text=Phonics+fun+3'">
+      </div>    
+      <div class="book-info">
+        <span class="book-tag">趣味拼读</span>
+        <h2 class="book-title">Phonics fun</h2>
+        <p class="book-full-desc">强调在玩乐中学习，透过有趣的游戏与轻快的歌谣，让孩子自然而然地学会拼读单字。</p>
+        <ul class="book-features">
+          <li>趣味游戏设计，告别枯燥练习。</li>
+          <li>经典歌谣结合，朗朗上口。</li>
+          <li>循序渐进的单字量，建立信心。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. Grammar -->
+    <section class="detail-section" id="book4">
+      <div class="book-visual-container">
+        <div class="book-visual">
+          <img src="GMYL 1 陸.jpg" alt="Grammar 1" onerror="this.src='https://placehold.co/300x400?text=GMYL+1'">
+                    </div>
+        <div class="book-visual">
+          <img src="GMYL 2 陸.jpg" alt="Grammar 2" onerror="this.src='https://placehold.co/300x400?text=GMYL+2'">
+                    </div>
+        <div class="book-visual">
+          <img src="GMYL 3 陸.jpg" alt="Grammar 3" onerror="this.src='https://placehold.co/300x400?text=GMYL+3'">
         </div>
       </div>
+      <div class="book-info">
+        <span class="book-tag">文法基础</span>
+        <h2 class="book-title">Grammar</h2>
+        <p class="book-full-desc">系统化整理英语文法规则，透过大量图解与实例，让生硬的语法变得简单易懂。</p>
+        <ul class="book-features">
+          <li>清晰的图解说明，一看就懂。</li>
+          <li>生活化的例句，实际应用。</li>
+          <li>丰富的复习单元，巩固基础。</li>
+        </ul>
+      </div>
+    </section>
 
-      <!-- 3. Phonics fun -->
-      <div class="book-card">
-        <div class="book-img-container">
-          <img src="Phonics fun 正方.jpg" alt="Phonics fun" onerror="this.src='https://placehold.co/600x600?text=Phonics+fun'">
-        </div>
-        <div class="book-content">
-          <div class="book-number">03</div>
-          <h2 class="book-title">Phonics fun</h2>
-          <p class="book-description">趣味性极高的自然发音系列，强调在游戏与歌谣中学习，奠定扎实基础。</p>
-          <div class="book-footer">
-            <a href="details.html#book3" class="btn-more">了解详情</a>
-          </div>
+    <!-- 5. Let's speak -->
+    <section class="detail-section" id="book5">
+      <div class="book-visual-container">
+        <div class="book-visual">
+          <img src="Let's Speak！1.jpg" alt="Let's speak" onerror="this.src='https://placehold.co/300x400?text=Let%27s+Speak'">
+                    </div>
+        <div class="book-visual">
+          <img src="Let's Speak！2.jpg" alt="Let's speak" onerror="this.src='https://placehold.co/300x400?text=Let%27s+Speak'">
+                    </div>
+        <div class="book-visual">
+          <img src="Let's Speak！3.jpg" alt="Let's speak" onerror="this.src='https://placehold.co/300x400?text=Let%27s+Speak'">
         </div>
       </div>
+      <div class="book-info">
+        <span class="book-tag">口说训练</span>
+        <h2 class="book-title">Let's speak</h2>
+        <p class="book-full-desc">专为国小学生设计的口说教材，透过结构化的对话练习与角色扮演，培养孩子开口说英文的勇气。</p>
+        <ul class="book-features">
+          <li>生活场景对话，实用性高。</li>
+          <li>趣味角色扮演，增加互动。</li>
+          <li>分级练习，由浅入深。</li>
+        </ul>
+      </div>
+    </section>
 
-      <!-- 4. Grammar -->
-      <div class="book-card">
-        <div class="book-img-container">
-          <img src="GMYL 1 陸正方.jpg" alt="Grammar" onerror="this.src='https://placehold.co/300x400?text=Grammar'">
-        </div>
-        <div class="book-content">
-          <div class="book-number">04</div>
-          <h2 class="book-title">Grammar</h2>
-          <p class="book-description">系统化的文法教材，将複杂的语法规则简化为易懂的图解与练习，建立扎实架构。</p>
-          <div class="book-footer">
-            <a href="details.html#book4" class="btn-more">了解详情</a>
-          </div>
+    <!-- 6. Fun reader -->
+    <section class="detail-section" id="book6">
+      <div class="book-visual-container">
+        <div class="book-visual">
+          <img src="book6.jpg" alt="Fun reader" onerror="this.src='https://placehold.co/300x400?text=Fun+reader'">
         </div>
       </div>
-
-      <!-- 5. Let's speak -->
-      <div class="book-card">
-        <div class="book-img-container">
-          <img src="Let's speak 正方.jpg" alt="Let’s speak" onerror="this.src='https://placehold.co/600x600?text=Let%27s+speak'">
-        </div>
-        <div class="book-content">
-          <div class="book-number">05</div>
-          <h2 class="book-title">Let's speak</h2>
-          <p class="book-description">三册式英语口说教材，透过结构化对话与趣味活动，有效提升听说能力。</p>
-          <div class="book-footer">
-            <a href="details.html#book5" class="btn-more">了解详情</a>
-          </div>
-        </div>
+      <div class="book-info">
+        <span class="book-tag">分级读本</span>
+        <h2 class="book-title">Fun reader</h2>
+        <p class="book-full-desc">精选多元主题故事，结合精美插画与适中的单字难度，是培养阅读习惯的首选。</p>
+        <ul class="book-features">
+          <li>故事引人入胜，主题多元。</li>
+          <li>精美插图，辅助内容理解。</li>
+          <li>附带阅读理解测验，追踪成效。</li>
+        </ul>
       </div>
+    </section>
 
-      <!-- 6. Fun reader -->
-      <div class="book-card">
-        <div class="book-img-container">
-          <img src="https://www.tangao.com.tw/images/product/20210511154300.jpg" alt="Fun reader" onerror="this.src='https://placehold.co/300x400?text=Fun+reader'">
-        </div>
-        <div class="book-content">
-          <div class="book-number">06</div>
-          <h2 class="book-title">Fun reader</h2>
-          <p class="book-description">精选多样化主题的读本系列，培养孩子的阅读兴趣与理解力。</p>
-          <div class="book-footer">
-            <a href="details.html#book6" class="btn-more">了解详情</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 7. Super Starter -->
-      <div class="book-card">
-        <div class="book-img-container">
+    <!-- 7. Super Starter -->
+    <section class="detail-section" id="book7">
+      <div class="book-visual-container">
+        <div class="book-visual">
           <img src="Super Starter 1 陸版.jpg" alt="Super Starter" onerror="this.src='https://placehold.co/300x400?text=Super+Starter'">
-        </div>
-        <div class="book-content">
-          <div class="book-number">07</div>
-          <h2 class="book-title">Super Starter</h2>
-          <p class="book-description">专为初学者设计的启蒙教材，内容简单明瞭，让孩子第一步就爱上英文。</p>
-          <div class="book-footer">
-            <a href="details.html#book7" class="btn-more">了解详情</a>
-          </div>
+                    </div>
+        <div class="book-visual">
+          <img src="Super Starter 2 陸版.jpg" alt="Super Starter" onerror="this.src='https://placehold.co/300x400?text=Super+Starter'">
         </div>
       </div>
+      <div class="book-info">
+        <span class="book-tag">初学者启蒙</span>
+        <h2 class="book-title">Super Starter</h2>
+        <p class="book-full-desc">为零基础的孩子打造，从最基本的字母与生活单字开始，建立学习英语的好感度。</p>
+        <ul class="book-features">
+          <li>大字体设计，保护视力。</li>
+          <li>活泼配色，激发学习热情。</li>
+          <li>内容极简，降低学习压力。</li>
+        </ul>
+      </div>
+    </section>
 
-      <!-- 8. My first reading 101 -->
-      <div class="book-card">
-        <div class="book-img-container">
-          <img src=" My first reading 101 正方.jpg" alt="My first reading 101" onerror="this.src='https://placehold.co/300x400?text=My+first+reading+101'">
+    <!-- 8. My first reading 101 -->
+    <section class="detail-section" id="book8">
+      <div class="book-visual-container">
+        <div class="book-visual">
+          <img src="My First Reading 101 1.jpg" alt="My first reading 101" onerror="this.src='https://placehold.co/300x400?text=My+first+reading+101'">
+                    </div>
+        <div class="book-visual">
+          <img src="My First Reading 101 2.jpg" alt="My first reading 101" onerror="this.src='https://placehold.co/300x400?text=My+first+reading+101'">
         </div>
-        <div class="book-content">
-          <div class="book-number">08</div>
-          <h2 class="book-title">My first reading 101</h2>
-          <p class="book-description">基础阅读系列，从单字到短句循序渐进，是孩子开始独立阅读的最佳选择。</p>
-          <div class="book-footer">
-            <a href="details.html#book8" class="btn-more">了解详情</a>
-          </div>
         </div>
       </div>
+      <div class="book-info">
+        <span class="book-tag">基础阅读</span>
+        <h2 class="book-title">My first reading 101</h2>
+        <p class="book-full-desc">引导孩子从单字认读过渡到短句阅读，是迈向独立阅读的重要基石。</p>
+        <ul class="book-features">
+          <li>图像化记忆法，加深学习印象。</li>
+          <li>简单短文，建立成就感。</li>
+          <li>朗读练习，训练口齿清晰。</li>
+        </ul>
+      </div>
+    </section>
 
-      <!-- 9. Listen up -->
-      <div class="book-card">
-        <div class="book-img-container">
+    <!-- 9. Listen up -->
+    <section class="detail-section" id="book9">
+      <div class="book-visual-container">
+        <div class="book-visual">
           <img src="Listen Up 1.jpg" alt="Listen up" onerror="this.src='https://placehold.co/300x400?text=Listen+up'">
-        </div>
-        <div class="book-content">
-          <div class="book-number">09</div>
-          <h2 class="book-title">Listen up</h2>
-          <p class="book-description">专注于听力训练的教材，包含多种生活化场景，全面提升听力敏锐度。</p>
-          <div class="book-footer">
-            <a href="details.html#book9" class="btn-more">了解详情</a>
-          </div>
+                    </div>
+        <div class="book-visual">
+          <img src="Listen Up 2.jpg" alt="Listen up" onerror="this.src='https://placehold.co/300x400?text=Listen+up'">
+                    </div>
+        <div class="book-visual">
+          <img src="Listen Up 3.jpg" alt="Listen up" onerror="this.src='https://placehold.co/300x400?text=Listen+up'">
         </div>
       </div>
+      <div class="book-info">
+        <span class="book-tag">听力特训</span>
+        <h2 class="book-title">Listen up</h2>
+        <p class="book-full-desc">全方位的听力训练教材，收录各种真实语境下的对话，提升耳朵的敏感度。</p>
+        <ul class="book-features">
+          <li>多种口音模拟，应对真实环境。</li>
+          <li>题型多元，训练专注力。</li>
+          <li>附赠听力脚本，方便复习。</li>
+        </ul>
+      </div>
+    </section>
 
-      <!-- 10. Power reading -->
-      <div class="book-card">
-        <div class="book-img-container">
-          <img src="https://www.tangao.com.tw/images/product/20210511154700.jpg" alt="Power reading" onerror="this.src='https://placehold.co/300x400?text=Power+reading'">
-        </div>
-        <div class="book-content">
-          <div class="book-number">10</div>
-          <h2 class="book-title">Reading Power</h2>
-          <p class="book-description">进阶阅读教材，旨在提升学生的阅读速度与深度理解力。</p>
-          <div class="book-footer">
-            <a href="details.html#book10" class="btn-more">了解详情</a>
-          </div>
+    <!-- 10. Power reading -->
+    <section class="detail-section" id="book10">
+      <div class="book-visual-container">
+        <div class="book-visual">
+          <img src="Reading Power 1.jpg" alt="Power reading" onerror="this.src='https://placehold.co/300x400?text=Power+reading'">
+             </div>
+        <div class="book-visual">
+          <img src="Reading Power 2.jpg" alt="Power reading" onerror="this.src='https://placehold.co/300x400?text=Power+reading'">
+             </div>
+        <div class="book-visual">
+          <img src="Reading Power 3.jpg" alt="Power reading" onerror="this.src='https://placehold.co/300x400?text=Power+reading'">
         </div>
       </div>
+      <div class="book-info">
+        <span class="book-tag">进阶阅读</span>
+        <h2 class="book-title">Reading Power</h2>
+        <p class="book-full-desc">针对高年级或国中生设计，强调文章结构分析与深层含义理解，提升阅读素养。</p>
+        <ul class="book-features">
+          <li>长篇文章训练，培养耐心。</li>
+          <li>逻辑推理练习，加深思考。</li>
+          <li>学术性单字累积，衔接考试。</li>
+        </ul>
+      </div>
+    </section>
 
-      <!-- 11. Reading box (小套組) -->
-      <div class="book-card">
-        <div class="book-img-container">
-          <img src="https://www.tangao.com.tw/images/product/20210511154800.jpg" alt="Reading box (小套組)" onerror="this.src='https://placehold.co/300x400?text=Reading+box'">
-        </div>
-        <div class="book-content">
-          <div class="book-number">11</div>
-          <h2 class="book-title">Reading box (小套組)</h2>
-          <p class="book-description">经典的读本小套组，收录多本精彩故事，是家庭共读或教室补充教材的理想之选。</p>
-          <div class="book-footer">
-            <a href="details.html#book11" class="btn-more">了解详情</a>
-          </div>
+    <!-- 11. Reading box (小套組) -->
+    <section class="detail-section" id="book11">
+      <div class="book-visual-container">
+        <div class="book-visual">
+          <img src="book11.jpg" alt="Reading box (小套組)" onerror="this.src='https://placehold.co/300x400?text=Reading+box'">
         </div>
       </div>
+      <div class="book-info">
+        <span class="book-tag">经典套组</span>
+        <h2 class="book-title">Reading box (小套组)</h2>
+        <p class="book-full-desc">精选经典故事集结成箱，适合放在教室角落或家庭书架，随时享受阅读乐趣。</p>
+        <ul class="book-features">
+          <li>精装外盒，方便收纳。</li>
+          <li>故事风格多样，百看不厌。</li>
+          <li>CP值极高，合作首选。</li>
+        </ul>
+      </div>
+    </section>
 
-    </div>
   </main>
 
   <footer>
-    <p>&copy; 2026 堂奥图书 - 开放代理合作书目展示</p>
+    <p>&copy; 2026 堂奥图书 - 开放代理合作书目详细介绍</p>
   </footer>
 
 </body>
