@@ -6,35 +6,75 @@
   <title>开放代理合作书目 | 书籍展示</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* ── Reset & Base ── */
+   /* ── 變數與基礎設定 ── */
+    :root {
+      --primary-color: #e8820a;
+      --primary-hover: #c96e08;
+      --bg-light: #f8faff;
+      --text-dark: #2d3436;
+      --text-gray: #636e72;
+      --card-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --header-gradient: linear-gradient(135deg, #ffd078 0%, #ffb142 100%);
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-      background: #f9f9f9;
-      color: #333;
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
       line-height: 1.6;
     }
-    a { text-decoration: none; color: inherit; }
+
+    /* ── 頂部導覽列 (新增) ── */
+    nav {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 15px 5%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .logo { font-weight: 700; color: var(--primary-color); font-size: 1.2rem; }
 
     /* ── Header ── */
     header {
-      background: #ffd078;
-      padding: 40px 20px;
+      background: var(--header-gradient);
+      padding: 80px 20px;
       text-align: center;
-      border-bottom: 1px solid #eee;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      clip-path: ellipse(150% 100% at 50% 0%); /* 圓弧造型 */
     }
     header h1 {
-      font-size: 36px;
-      color: #1a1a1a;
-      margin-bottom: 10px;
-      letter-spacing: 2px;
+      font-size: 42px;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+      font-weight: 900;
     }
-    header p {
-      color: #666;
-      font-size: 18px;
+    .contact-box {
+      margin-top: 25px;
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 10px 25px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.4);
     }
+
+    /* ── 內容區 ── */
+    main {
+      max-width: 1200px;
+      margin: -40px auto 60px; /* 向上偏移產生重疊感 */
+      padding: 0 20px;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
     /* ── 卡片美化 ── */
     .book-card {
       background: #fff;
