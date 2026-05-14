@@ -28,115 +28,129 @@
       background: var(--bg-light);
       color: var(--text-dark);
       line-height: 1.6;
+      padding-left: 80px; /* 為側邊懸浮選單留出空間 */
     }
 
-    /* ── 頂部導覽列 (左側標題 + 下拉選單) ── */
-    nav {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      padding: 10px 5%;
-      position: sticky;
-      top: 0;
+    /* ── 左側懸浮導覽選單 ── */
+    .side-nav {
+      position: fixed;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
       z-index: 1000;
       display: flex;
-      justify-content: flex-start; /* 改為左對齊 */
+      flex-direction: column;
+      gap: 15px;
       align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      gap: 30px;
-    }
-    .logo { 
-      font-weight: 700; 
-      color: var(--primary-color); 
-      font-size: 1.4rem; 
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .nav-link-home {
-      text-decoration: none;
-      color: var(--text-dark);
-      font-weight: 500;
-      font-size: 16px;
-      transition: color 0.3s;
-    }
-    .nav-link-home:hover {
-      color: var(--primary-color);
     }
 
-    /* 圓弧下拉選單樣式 */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropbtn {
-      background-color: #fff;
-      color: var(--text-dark);
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: 500;
-      border: 2px solid #eee;
-      border-radius: 50px; /* 圓弧造型 */
-      cursor: pointer;
-      transition: all 0.3s;
+    /* 首頁按鈕 (獨立圓形) */
+    .nav-home-btn {
+      width: 50px;
+      height: 50px;
+      background: #fff;
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border: 2px solid #eee;
+    }
+    .nav-home-btn:hover {
+      background: var(--primary-color);
+      color: #fff;
+      border-color: var(--primary-color);
+      transform: scale(1.1);
+    }
+
+    /* 目錄下拉選單 (側邊懸浮) */
+    .side-dropdown {
+      position: relative;
+    }
+
+    .side-dropbtn {
+      width: 50px;
+      height: 50px;
+      background: #fff;
+      border: 2px solid #eee;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
       outline: none;
     }
 
-    .dropbtn:hover, .dropdown:hover .dropbtn {
+    .side-dropbtn::before {
+      content: '☰'; /* 目錄圖示 */
+      font-size: 20px;
+      color: var(--text-dark);
+    }
+
+    .side-dropdown:hover .side-dropbtn {
       border-color: var(--primary-color);
-      color: var(--primary-color);
-      background-color: #fffaf0;
+      transform: rotate(90deg);
     }
 
-    .dropbtn::after {
-      content: '▼';
-      font-size: 10px;
-      transition: transform 0.3s;
-    }
-
-    .dropdown:hover .dropbtn::after {
-      transform: rotate(180deg);
-    }
-
-    .dropdown-content {
+    .side-dropdown-content {
       display: none;
       position: absolute;
+      left: 60px;
+      top: 0;
       background-color: #fff;
-      min-width: 220px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-      z-index: 1;
-      top: 100%;
-      left: 0;
-      margin-top: 10px;
-      border-radius: 15px; /* 圓弧造型 */
+      min-width: 200px;
+      box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
+      border-radius: 20px;
       overflow: hidden;
       border: 1px solid #eee;
-      animation: fadeIn 0.3s ease;
+      animation: slideInLeft 0.3s ease;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
-    .dropdown-content a {
+    .side-dropdown-content a {
       color: var(--text-dark);
       padding: 12px 20px;
       text-decoration: none;
       display: block;
       font-size: 14px;
-      transition: background 0.2s;
+      font-weight: 500;
+      transition: all 0.2s;
+      border-bottom: 1px solid #f9f9f9;
     }
 
-    .dropdown-content a:hover {
+    .side-dropdown-content a:last-child { border-bottom: none; }
+
+    .side-dropdown-content a:hover {
       background-color: #fff4e6;
       color: var(--primary-color);
+      padding-left: 25px;
     }
 
-    .dropdown:hover .dropdown-content {
+    .side-dropdown:hover .side-dropdown-content {
       display: block;
+    }
+
+    /* ── 頂部 Logo (僅顯示文字) ── */
+    .top-bar {
+      padding: 20px 5%;
+      display: flex;
+      justify-content: flex-start;
+    }
+    .logo-text {
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      text-decoration: none;
     }
 
     /* ── Header ── */
@@ -146,6 +160,7 @@
       text-align: center;
       color: #fff;
       clip-path: ellipse(150% 100% at 50% 0%);
+      margin-bottom: 20px;
     }
     header h1 { font-size: 36px; margin-bottom: 10px; font-weight: 900; }
     header p { font-size: 18px; opacity: 0.9; }
@@ -286,25 +301,40 @@
       padding: 40px 20px;
     }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 28px; }
-      .book-grid { grid-template-columns: 1fr; }
-      nav { gap: 15px; padding: 10px 3%; }
-      .logo { font-size: 1.1rem; }
-      .dropbtn { padding: 8px 15px; font-size: 14px; }
+    @media (max-width: 768px) {
+      body { padding-left: 0; }
+      .side-nav {
+        flex-direction: row;
+        top: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255,255,255,0.9);
+        padding: 10px 20px;
+        border-radius: 50px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      }
+      .side-dropdown-content {
+        left: 50%;
+        bottom: 70px;
+        top: auto;
+        transform: translateX(-50%);
+      }
+      @keyframes slideInLeft {
+        from { opacity: 0; transform: translate(-50%, 20px); }
+        to { opacity: 1; transform: translate(-50%, 0); }
+      }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="logo">堂奧圖書</a>
-    
-    <!-- 圓弧下拉選單 -->
-    <a href="index.html" class="nav-link-home">首頁</a>
-    <div class="dropdown">
-      <button class="dropbtn">全系列目錄</button>
-      <div class="dropdown-content">
+  <!-- 左側懸浮導覽 -->
+  <div class="side-nav">
+    <a href="index.html" class="nav-home-btn" title="回首頁">首頁</a>
+    <div class="side-dropdown">
+      <button class="side-dropbtn" title="展開目錄"></button>
+      <div class="side-dropdown-content">
         <a href="#">Phonics go</a>
         <a href="#">Fun Reader</a>
         <a href="#">New I fun</a>
@@ -317,7 +347,11 @@
         <a href="#">Power reading</a>
       </div>
     </div>
-  </nav>
+  </div>
+
+  <div class="top-bar">
+    <a href="index.html" class="logo-text">堂奧圖書</a>
+  </div>
 
   <header>
     <h1>Reading Box 系列</h1>
