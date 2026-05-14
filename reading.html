@@ -28,10 +28,10 @@
       background: var(--bg-light);
       color: var(--text-dark);
       line-height: 1.6;
-      padding-left: 80px; /* 為側邊懸浮選單留出空間 */
+      padding-left: 80px; 
     }
 
-    /* ── 左側懸浮導覽選單 ── */
+    /* ── 左側懸浮導覽選單 (純 CSS 點擊觸發) ── */
     .side-nav {
       position: fixed;
       left: 20px;
@@ -44,7 +44,6 @@
       align-items: center;
     }
 
-    /* 首頁按鈕 (獨立圓形) */
     .nav-home-btn {
       width: 50px;
       height: 50px;
@@ -67,12 +66,12 @@
       transform: scale(1.1);
     }
 
-    /* 目錄下拉選單 (側邊懸浮) */
-    .side-dropdown {
-      position: relative;
+    /* Checkbox Hack 控制選單 */
+    #menu-toggle {
+      display: none; /* 隱藏 checkbox */
     }
 
-    .side-dropbtn {
+    .side-dropbtn-label {
       width: 50px;
       height: 50px;
       background: #fff;
@@ -84,22 +83,19 @@
       justify-content: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       transition: all 0.3s ease;
-      outline: none;
-    }
-
-    .side-dropbtn::before {
-      content: '☰'; /* 目錄圖示 */
       font-size: 20px;
       color: var(--text-dark);
     }
 
-    .side-dropdown:hover .side-dropbtn {
+    /* 點擊時按鈕變化 */
+    #menu-toggle:checked + .side-dropbtn-label {
       border-color: var(--primary-color);
       transform: rotate(90deg);
+      color: var(--primary-color);
     }
 
     .side-dropdown-content {
-      display: none;
+      display: none; /* 預設隱藏 */
       position: absolute;
       left: 60px;
       top: 0;
@@ -109,6 +105,11 @@
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid #eee;
+    }
+
+    /* 當 Checkbox 被選中時顯示內容 */
+    #menu-toggle:checked ~ .side-dropdown-content {
+      display: block;
       animation: slideInLeft 0.3s ease;
     }
 
@@ -136,11 +137,7 @@
       padding-left: 25px;
     }
 
-    .side-dropdown:hover .side-dropdown-content {
-      display: block;
-    }
-
-    /* ── 頂部 Logo (僅顯示文字) ── */
+    /* ── 頂部 Logo ── */
     .top-bar {
       padding: 20px 5%;
       display: flex;
@@ -320,20 +317,19 @@
         top: auto;
         transform: translateX(-50%);
       }
-      @keyframes slideInLeft {
-        from { opacity: 0; transform: translate(-50%, 20px); }
-        to { opacity: 1; transform: translate(-50%, 0); }
-      }
     }
   </style>
 </head>
 <body>
 
-  <!-- 左側懸浮導覽 -->
+  <!-- 左側懸浮導覽 (純 CSS) -->
   <div class="side-nav">
     <a href="index.html" class="nav-home-btn" title="回首頁">首頁</a>
+    
     <div class="side-dropdown">
-      <button class="side-dropbtn" title="展開目錄"></button>
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="side-dropbtn-label" title="展開目錄">☰</label>
+      
       <div class="side-dropdown-content">
         <a href="#">Phonics go</a>
         <a href="#">Fun Reader</a>
